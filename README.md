@@ -44,19 +44,31 @@ Write the detailed procedure here
 
 **Program:**
 ```
-module expe4(df,bo,a,b,bin);
-output df;
-output bo;
-input a;
-input b;
-input bin;
-wire w1,w2,w3;
-assign w1=a^b;
-assign w2=(~a&b);
-assign w3=(~w1&bin);
-assign df=w1^bin;
-assign bo=w2|w3;
+full add
+
+module FULLADD(a,b,cin,sum,carry);
+input a,b,cin;
+output sum,carry;
+wire w1,w2,w3,w4;       
+xor(w1,a,b);
+xor(sum,w1,cin);        
+
+and(w2,a,b);
+and(w3,b,cin);
+and(w4,cin,a);
+
+or(carry,w2,w3,w4);
+endmodule 
+
+
+full sub
+module FULLSUB(a,b,Bin,BO,DIFF);
+input a,b,Bin;
+output BO,DIFF;
+assign DIFF = a ^ b ^ Bin;
+  assign BO = (a & b) | ((a ^ b) & Bin);
 endmodule
+
 ```
 
 /* Program to design a half subtractor and full subtractor circuit and verify its truth table in quartus using Verilog programming. 
@@ -65,10 +77,13 @@ RegisterNumber:24005930
 */
 
 **RTL Schematic**
-![WhatsApp Image 2024-12-03 at 18 44 32_b2432b03](https://github.com/user-attachments/assets/9263f3cd-6e76-4ad2-ad4f-f8e5f26f2f99)
+![Screenshot 2024-12-10 142623](https://github.com/user-attachments/assets/3697302e-f5cb-4045-85f8-5fee9c5a1042)
+![Screenshot 2024-12-10 142834](https://github.com/user-attachments/assets/7e3ec03c-2407-4648-a70c-5aab6e217e3f)
 
 **Output Timing Waveform**
-![WhatsApp Image 2024-12-03 at 18 44 33_b01771a2](https://github.com/user-attachments/assets/36cb6da5-60fe-47ba-b9a5-4c40861bb05a)
+![Screenshot 2024-12-10 142849](https://github.com/user-attachments/assets/b8aa5705-c6a2-4838-a22e-74a98410371f)
+
+![Screenshot 2024-12-10 142656](https://github.com/user-attachments/assets/f16574f5-c917-404e-a34c-83d8b288f5a8)
 
 
 **Result:**
